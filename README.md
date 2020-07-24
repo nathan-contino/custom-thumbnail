@@ -4,3 +4,21 @@
 
 <p align=center>Recursively creates custom thumbnails keeping aspect ratio intact :)</p>
 
+```yaml
+name: custom-thumbnail
+on: [push]
+
+jobs:
+  build:
+    name: custom-thumbnail
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: custom-thumbnail
+        uses: deep5050/custom-thumbnail@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN}}
+          inplace: True
+
+
+```

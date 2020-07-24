@@ -12,7 +12,7 @@ inputs:
     default: "500"
     required: false
 
-   inplace:
+  inplace:
     description: "Replace original file with the resultant one"
     default: False
     required: false

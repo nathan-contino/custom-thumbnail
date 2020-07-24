@@ -26,8 +26,8 @@ GITHUB_REPOSITORY_OWNER = os.environ['GITHUB_REPOSITORY_OWNER']
 GITHUB_TOKEN = os.environ['INPUT_GITHUB_TOKEN']
 
 
-MAX_HEIGHT_WIDTH = os.environ['INPUT_MAX_HEIGHT_WIDTH'] or "500"
-
+MAX_HEIGHT_WIDTH = os.environ['INPUT_BASE_HEIGHT_WIDTH'] or "500"
+INPLACE = os.environ['INPUT_INPLACE'] or False
 
 
 def commit_changes():
@@ -81,12 +81,15 @@ def main():
     size = max_height_width,max_height_width
     for entry in result:
         print(f"resizing {entry}  ------")
-        filename = os.path.splitext(entry)[0]
+        file_name = os.path.splitext(entry)[0]
         file_ext = os.path.splitext(entry)[1]
         try:
             im = Image.open(entry)
             im.thumbnail(size,Image.ANTIALIAS)
-            im.save(entry)
+            if INPLACE==True:
+                im.save(entry)
+            else:
+                im.save(f"../.thumbnails/{file_name}")
         except IOError:
             print(f" can not create thumbnail for {entry}")
 

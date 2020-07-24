@@ -3,7 +3,7 @@ import subprocess as sp
 import glob
 from PIL import Image
 
-# GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
+GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
 
 # Set repository
 # CURRENT_REPOSITORY = os.environ['GITHUB_REPOSITORY']
@@ -26,15 +26,15 @@ from PIL import Image
 
 
 #################
-# GITHUB_TOKEN = os.environ['INPUT_GITHUB_TOKEN']
+GITHUB_TOKEN = os.environ['INPUT_GITHUB_TOKEN']
 
 
-# MAX_HEIGHT_WIDTH = os.environ['INPUT_BASE_HEIGHT_WIDTH'] or "500"
-# INPLACE = os.environ['INPUT_INPLACE'] or False
+MAX_HEIGHT_WIDTH = os.environ['INPUT_BASE_HEIGHT_WIDTH'] or "500"
+INPLACE = os.environ['INPUT_INPLACE'] or False
 
 ################################
-INPLACE = False
-MAX_HEIGHT_WIDTH =500
+# INPLACE = False
+# MAX_HEIGHT_WIDTH =500
 def commit_changes():
     """Commits changes.
     """

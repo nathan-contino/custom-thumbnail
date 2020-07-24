@@ -3,7 +3,7 @@ import subprocess as sp
 import glob
 from PIL import Image
 
-GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
+# GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
 
 # Set repository
 # CURRENT_REPOSITORY = os.environ['GITHUB_REPOSITORY']
@@ -23,13 +23,18 @@ GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
 
 # GITHUB_ACTOR = os.environ['GITHUB_ACTOR']
 # GITHUB_REPOSITORY_OWNER = os.environ['GITHUB_REPOSITORY_OWNER']
-GITHUB_TOKEN = os.environ['INPUT_GITHUB_TOKEN']
 
 
-MAX_HEIGHT_WIDTH = os.environ['INPUT_BASE_HEIGHT_WIDTH'] or "500"
-INPLACE = os.environ['INPUT_INPLACE'] or False
+#################
+# GITHUB_TOKEN = os.environ['INPUT_GITHUB_TOKEN']
 
 
+# MAX_HEIGHT_WIDTH = os.environ['INPUT_BASE_HEIGHT_WIDTH'] or "500"
+# INPLACE = os.environ['INPUT_INPLACE'] or False
+
+################################
+INPLACE = False
+MAX_HEIGHT_WIDTH =500
 def commit_changes():
     """Commits changes.
     """
@@ -59,9 +64,6 @@ def push_changes():
 
 
 def main():
-    if (GITHUB_EVENT_NAME == 'pull_request') and (GITHUB_ACTOR != GITHUB_REPOSITORY_OWNER):
-        return
-
 
     # Recusrively get all the image files (jpg,jpeg,png)
 
@@ -78,8 +80,12 @@ def main():
 
     max_height_width = int(MAX_HEIGHT_WIDTH)
     size = max_height_width,max_height_width
+    import os
+    if not os.path.exists('../.thumbnails'):
+        os.makedirs('../.thumbnails')
     for entry in result:
         print(f"resizing {entry}  ------")
+        out_file = os.path.basename(entry)
         file_name = os.path.splitext(entry)[0]
         file_ext = os.path.splitext(entry)[1]
         try:
@@ -88,9 +94,13 @@ def main():
             if INPLACE==True:
                 im.save(entry)
             else:
-                im.save(f"../.thumbnails/{file_name}")
+                out_path = os.path.abspath(f"../.thumbnails/{out_file}")
+                print("out"+ out_path)
+                im.save(out_path)
+
+
         except IOError:
-            print(f" can not create thumbnail for {entry}")
+            print(f" can not create thumbnail for {entry} Error: {IOError}")
 
 
 

@@ -81,8 +81,8 @@ def main():
     max_height_width = int(MAX_HEIGHT_WIDTH)
     size = max_height_width,max_height_width
     import os
-    if not os.path.exists('../.thumbnails'):
-        os.makedirs('../.thumbnails')
+    if not os.path.exists('../thumbnails'):
+        os.makedirs('../thumbnails')
     for entry in result:
         print(f"resizing {entry}  ------")
         out_file = os.path.basename(entry)
@@ -94,7 +94,7 @@ def main():
             if INPLACE==True:
                 im.save(entry)
             else:
-                out_path = os.path.abspath(f"../.thumbnails/{out_file}")
+                out_path = os.path.abspath(f"../thumbnails/{out_file}")
                 print("out"+ out_path)
                 im.save(out_path)
 

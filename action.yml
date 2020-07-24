@@ -1,18 +1,21 @@
 name: "custom-thumbnail"
 author: deep5050
-description: "Find potential vulnerabilities in your C/C++ codes"
+description: "Cereate custom thumbnails out of all the original images recursively"
 
 inputs:
   github_token:
     description: "GITHUB_TOKEN secret < automatically provided by Github , you don't need to set up >"
     required: true
 
-  max_height_width:
-    description: "max height/width to be maintained"
+  base_height_width:
+    description: "base height/width to be maintained"
     default: "500"
     required: false
 
- 
+   inplace:
+    description: "Replace original file with the resultant one"
+    default: False
+    required: false
 
   pull_request_branch:
     description: "Branch that the action will target on pull_request. Defaults to GITHUB_BASE_REF."

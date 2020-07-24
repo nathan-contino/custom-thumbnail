@@ -1,4 +1,4 @@
-name: "cppcheck-action"
+name: "inplace-image-resize"
 author: deep5050
 description: "Find potential vulnerabilities in your C/C++ codes"
 

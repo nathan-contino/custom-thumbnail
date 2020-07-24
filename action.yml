@@ -8,7 +8,7 @@ inputs:
     required: true
 
   max_height_width:
-    description: "Show information messages when library files have info."
+    description: "max height/width to be maintained"
     default: "500"
     required: false
 

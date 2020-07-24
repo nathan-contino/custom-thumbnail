@@ -1,6 +1,7 @@
 import os
 import subprocess as sp
-
+import glob
+from PIL import Image
 
 GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
 
@@ -24,95 +25,23 @@ GITHUB_ACTOR = os.environ['GITHUB_ACTOR']
 GITHUB_REPOSITORY_OWNER = os.environ['GITHUB_REPOSITORY_OWNER']
 GITHUB_TOKEN = os.environ['INPUT_GITHUB_TOKEN']
 
-# command related inputs
 
-CHECK_LIBRARY = os.environ['INPUT_CHECK_LIBRARY'] or 'disable'
-SKIP_PREPROCESSOR = os.environ['INPUT_SKIP_PREPROCESSOR'] or 'disable'
-ENABLE = os.environ['INPUT_ENABLE'] or 'all'
-EXCLUDE_CHECK = os.environ['INPUT_EXCLUDE_CHECK'] or 'disable'
-INCONCLUSIVE = os.environ['INPUT_INCONCLUSIVE'] or 'enable'
-INLINE_SUPPRESSION = os.environ['INPUT_INLINE_SUPPRESSION'] or 'disable'
-FORCE_LANGUAGE = os.environ['INPUT_FORCE_LANGUAGE'] or 'disable'
-MAX_CTU_DEPTH = os.environ['INPUT_MAX_CTU_DEPTH'] or 'disable'
-OUTPUT_FILE = os.environ['INPUT_OUTPUT_FILE'] or 'cppcheck_report.txt'
-PLATFORM = os.environ['INPUT_PLATFORM'] or 'disable'
+MAX_HEIGHT_WIDTH = os.environ['INPUT_MAX_HEIGHT_WIDTH'] or "500"
 
-command = ""
-
-
-def prepare_command():
-    global command
-    global out_file
-    command = command + "cppcheck "
-    # check every flags
-
-    if CHECK_LIBRARY == 'enable':
-        command = command + " --check-library"
-
-    if SKIP_PREPROCESSOR == 'enable':
-        command = command + " --E"
-
-    enable_val = 'all'  # default fallback value
-
-    if ENABLE == 'warning':
-        enable_val = 'warning'
-    elif ENABLE == 'style':
-        enable_val = 'style'
-    elif ENABLE == 'performance':
-        enable_val = 'performance'
-    elif ENABLE == 'portability':
-        enable_val = 'portability'
-    elif ENABLE == 'information':
-        enable_val = 'information'
-    elif ENABLE == 'unusedFunction':
-        enable_val = "unusedFunction"
-    elif ENABLE == 'missingInclude':
-        enable_val = 'missingInclude'
-
-    # multiple checks ; comma separated , skipping additional error checking
-    if ',' in ENABLE:
-        enable_val = ENABLE
-
-    command = command + f" --enable={enable_val}"
-
-    if EXCLUDE_CHECK != 'disable':
-        command = command + f" -i {EXCLUDE_CHECK}"
-        # assuming user passes a valid path
-    if INCONCLUSIVE != 'disable':
-        command = command + ' --inconclusive'
-
-    if INLINE_SUPPRESSION == "enable":
-        command = command + " --inline-suppr"
-
-    if FORCE_LANGUAGE != 'disable':
-        command = command + f" --language={FORCE_LANGUAGE}"
-    if MAX_CTU_DEPTH != 'disable':
-        command = command + f" --max-ctu-depth={MAX_CTU_DEPTH}"
-
-    if PLATFORM != 'disable':
-        command = command + f" --platform={PLATFORM}"
-
-    out_file = OUTPUT_FILE
-
-
-def run_cppcheck():
-    global command
-    command = command + f" --output-file={out_file} ."
-    sp.call(command, shell=True)
 
 
 def commit_changes():
     """Commits changes.
     """
-    set_email = 'git config --local user.email "flawfinder-action@master"'
-    set_user = 'git config --local user.name "flawfinder-action"'
+    set_email = 'git config --local user.email "inplace-image-resize@master"'
+    set_user = 'git config --local user.name "inplace-image-resize"'
 
     sp.call(set_email, shell=True)
     sp.call(set_user, shell=True)
 
     git_checkout = f'git checkout {TARGET_BRANCH}'
-    git_add = f'git add {out_file}'
-    git_commit = 'git commit -m "cppcheck report added/updated"'
+    git_add = f'git add .'
+    git_commit = 'git commit -m "Action: Images resized"'
     print('Committing reports.......')
 
     sp.call(git_checkout, shell=True)
@@ -131,11 +60,38 @@ def push_changes():
 
 def main():
 
-    if (GITHUB_EVENT_NAME == 'pull_request') and (GITHUB_ACTOR != GITHUB_REPOSITORY_OWNER):
-        return
+    # if (GITHUB_EVENT_NAME == 'pull_request') and (GITHUB_ACTOR != GITHUB_REPOSITORY_OWNER):
+    #     return
 
-    prepare_command()
-    run_cppcheck()
+
+    # Recusrively get all the image files (jpg,jpeg,png)
+
+    result = []
+    for name in glob.glob('../**/*.png',recursive = True): 
+        result.append(name) 
+
+    for name in glob.glob('../**/*.jpg',recursive = True): 
+        result.append(name) 
+
+    for name in glob.glob('../**/*.jpeg',recursive = True): 
+        result.append(name) 
+  
+
+    max_height_width = int(MAX_HEIGHT_WIDTH)
+    size = max_height_width,max_height_width
+    for entry in result:
+        print(f"resizing {entry}  ------")
+        filename = os.path.splitext(entry)[0]
+        file_ext = os.path.splitext(entry)[1]
+        try:
+            im = Image.open(entry)
+            im.thumbnail(size,Image.ANTIALIAS)
+            im.save(entry)
+        except IOError:
+            print(f" can not create thumbnail for {entry}")
+
+
+
     commit_changes()
     push_changes()
 

@@ -59,9 +59,8 @@ def push_changes():
 
 
 def main():
-
-    # if (GITHUB_EVENT_NAME == 'pull_request') and (GITHUB_ACTOR != GITHUB_REPOSITORY_OWNER):
-    #     return
+    if (GITHUB_EVENT_NAME == 'pull_request') and (GITHUB_ACTOR != GITHUB_REPOSITORY_OWNER):
+        return
 
 
     # Recusrively get all the image files (jpg,jpeg,png)

@@ -3,7 +3,7 @@ import subprocess as sp
 import glob
 from PIL import Image
 
-GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
+# GITHUB_EVENT_NAME = os.environ['GITHUB_EVENT_NAME']
 
 # Set repository
 # CURRENT_REPOSITORY = os.environ['GITHUB_REPOSITORY']
@@ -33,13 +33,13 @@ MAX_HEIGHT_WIDTH = os.environ['INPUT_BASE_HEIGHT_WIDTH'] or "500"
 INPLACE = os.environ['INPUT_INPLACE'] or False
 
 ################################
-# INPLACE = False
+# INPLACE = True
 # MAX_HEIGHT_WIDTH =500
 def commit_changes():
     """Commits changes.
     """
-    set_email = 'git config --local user.email "inplace-image-resize@master"'
-    set_user = 'git config --local user.name "inplace-image-resize"'
+    set_email = 'git config --local user.email "custom-thumbnail@master"'
+    set_user = 'git config --local user.name "custom-thumbnail"'
 
     sp.call(set_email, shell=True)
     sp.call(set_user, shell=True)
@@ -68,23 +68,23 @@ def main():
     # Recusrively get all the image files (jpg,jpeg,png)
 
     result = []
-    for name in glob.glob('../**/*.png',recursive = True): 
+    for name in glob.glob('./**/*.png',recursive = True): 
         result.append(name) 
 
-    for name in glob.glob('../**/*.jpg',recursive = True): 
+    for name in glob.glob('./**/*.jpg',recursive = True): 
         result.append(name) 
 
-    for name in glob.glob('../**/*.jpeg',recursive = True): 
+    for name in glob.glob('./**/*.jpeg',recursive = True): 
         result.append(name) 
   
 
     max_height_width = int(MAX_HEIGHT_WIDTH)
     size = max_height_width,max_height_width
     import os
-    if not os.path.exists('../thumbnails'):
-        os.makedirs('../thumbnails')
+    if not os.path.exists('./.thumbnails'):
+        os.makedirs('./.thumbnails')
     for entry in result:
-        print(f"resizing {entry}  ------")
+
         out_file = os.path.basename(entry)
         file_name = os.path.splitext(entry)[0]
         file_ext = os.path.splitext(entry)[1]
@@ -93,10 +93,12 @@ def main():
             im.thumbnail(size,Image.ANTIALIAS)
             if INPLACE==True:
                 im.save(entry)
+                print(f"wrote:  {entry} ----> {entry}")
             else:
-                out_path = os.path.abspath(f"../thumbnails/{out_file}")
-                print("out"+ out_path)
+                out_path = os.path.abspath(f"./.thumbnails/{out_file}")
+                # out_path = os.path.abspath(os.path.join(os.getcwd(),"..",".thumb",out_file))
                 im.save(out_path)
+                print(f"wrote:  {entry} ----> {out_path}")
 
 
         except IOError:

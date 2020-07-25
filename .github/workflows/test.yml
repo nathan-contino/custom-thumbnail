@@ -22,7 +22,7 @@ jobs:
 
           github_token: ${{ secrets.GITHUB_TOKEN}}
 
-          inplace: False
+          inplace: "enable"
 
       - name: Commit & Push changes
 

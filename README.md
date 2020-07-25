@@ -21,7 +21,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN}}
           inplace: "disable" # 'enable' / "disable" [ write thumbnails at their origin path (replace) ], if disabled writes under '.thumbnails' directory 
-          baseheight_width: "500" # (px) max limit of height/width, this is used to calculate the aspect ratio. 
+          baseheight_width: "500" # (px) max limit of height/width
       - name: Commit & Push changes
         uses: mikeal/publish-to-github-action@master
         env:

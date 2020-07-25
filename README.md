@@ -6,6 +6,13 @@
 <p align=center> <b> inplace conversion . configurable </b>  </p>
 <p align=center> keep original directory structure while wiriting under a seperate directory</p>
 
+<p align=center>
+  <img align=center src=http://hits.dwyl.com/deep5050/cppcheck-action.svg" />
+  <img align=center src="https://img.shields.io/github/v/release/deep5050/cppcheck-action?style=flat-square" />                                                                  
+
+</p>
+
+
 ```yaml
 name: custom-thumbnail
 on: [push]

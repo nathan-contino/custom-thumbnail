@@ -2,7 +2,7 @@
 
 <p align=center> <h2 align=center>custom-thumbnail</h2></p>
 
-<p align=center>Recursively creates custom thumbnails keeping aspect ratio and directory structure unchanged :)</p>
+<p align=center>A GitHub action that recursively creates custom thumbnails keeping aspect ratio and directory structure unchanged :)</p>
 <p align=center> <b> inplace conversion . configurable </b>  </p>
 <p align=center> keep original directory structure while wiriting under a seperate directory</p>
 

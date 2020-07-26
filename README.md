@@ -39,25 +39,17 @@ jobs:
 
 ## License
 >GNU Public License
-
->Copyright (c) 2020 Dipankar Pal
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## Bugs
+[submit bugs here](https://github.com/deep5050/custom-thumbnail/issues)
 
 
+
+## Want To Contribute?
+
+All kinds of contributions are welcome :raised_hands:! The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon: You can also support this project by [**becoming a sponsor on GitHub**](https://github.com/sponsors/deep5050) :clap: or by making a [Paypal donation](https://www.paypal.me/deep5050) to ensure this journey continues indefinitely! :rocket:
+
+Thanks again for your support, it is much appreciated! :pray:
+
+## Related Works
+
+[qikQR](https://github.com/deep5050/qikQR) . [autobadge](https://github.com/deep5050/autobadge) . [qikstart](https://github.com/deep5050/qikstart)

@@ -23,6 +23,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN}}
 
           inplace: "enable"
+          base_height_width: "400"
+          keep_dir_structure: "enable"
+
 
       - name: Commit & Push changes
 

@@ -8,8 +8,7 @@
 
 <p align=center>
  <!-- <img align=center src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fdeep5050%2Fcustom-thumbnail"/>                         -->
-  <img align=center src="https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2Fdeep5050%2Fcustom-thumbnail" alt="Hits">
-
+  <img align=center  src="https://visitor-badge.laobi.icu/badge?page_id=deep5050.custom-thumbnail" alt="Visitors">
   <!-- <img align=center src=http://hits.dwyl.com/deep5050/custom-thumbnail.svg" /> -->
   <img align=center src="https://img.shields.io/github/v/release/deep5050/custom-thumbnail?style=flat-square" />                                                                  
 

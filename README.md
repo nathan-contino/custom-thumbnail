@@ -1,10 +1,9 @@
 
+![custom-thumbnail](https://socialify.git.ci/deep5050/custom-thumbnail/image?description=1&font=Bitter&language=1&owner=1&pattern=Charlie%20Brown&theme=Light)
 
-<p align=center> <h2 align=center>custom-thumbnail</h2></p>
 
-<p align=center>A GitHub action that recursively creates custom thumbnails keeping aspect ratio and directory structure unchanged :)</p>
 <p align=center> <b> inplace conversion . configurable </b>  </p>
-<p align=center> keep original directory structure while wiriting under output directory</p>
+
 
 <p align=center>
  <!-- <img align=center src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fdeep5050%2Fcustom-thumbnail"/>                         -->

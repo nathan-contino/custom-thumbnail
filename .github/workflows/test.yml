@@ -16,7 +16,7 @@ jobs:
 
       - name: custom-thumbnail
 
-        uses: nathan-contino/custom-thumbnail@master
+        uses: deep5050/custom-thumbnail@master
 
         with:
 

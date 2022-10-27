@@ -12,6 +12,7 @@ import os
 MAX_HEIGHT_WIDTH = os.environ['INPUT_BASE_HEIGHT_WIDTH'] or "500"
 INPLACE = os.environ['INPUT_INPLACE'] or "disable"
 KEEP_DIR_STRUCTURE = os.environ['INPUT_KEEP_DIR_STRUCTURE'] or "enable"
+OVERWRITE_EXISTING_THUMBNAILS = os.environ['OVERWRITE_EXISTING_THUMBNAILS'] or "enable"
 
 def main():
 
@@ -56,7 +57,11 @@ def main():
                         os.makedirs(out_dir)
                     # print(out_dir)
                     # print(out_path)
-                    im.save(out_path)
+                    if OVERWRITE_EXISTING_THUMBNAILS=="disable":
+                        if not os.path.exists(out_path):
+                            im.save(out_path)
+                    else:
+                        im.save(out_path)
                 print(f"wrote:  {entry} ----> {out_path}")
 
 

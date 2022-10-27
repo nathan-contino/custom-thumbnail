@@ -1,6 +1,6 @@
 name: "custom-thumbnail"
 author: deep5050
-description: "Cereate custom thumbnails out of all the original images recursively"
+description: "Create custom thumbnails out of all the original images recursively"
 
 inputs:
   github_token:
